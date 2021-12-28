@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "40895bb0-2e9a-40b1-9baf-578824e8b295"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -83,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "login:build"
+            "browserTarget": "login:build"          
           }
         },
         "test": {

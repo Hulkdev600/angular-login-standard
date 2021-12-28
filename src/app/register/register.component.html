@@ -1,0 +1,44 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+    
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="mb-3">
+      <label class="form-label">이메일</label>
+      <input formControlName="email" type="text" class="form-control" placeholder="이메일" [ngClass]="{ 'is-invalid' : submitted && f.email.errors }">
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">이메일을 입력하세요.</div>
+        <div *ngIf="f.email.errors.email">이메일 형식이 아닙니다.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">성명</label>
+      <input formControlName="name" type="text" class="form-control" placeholder="성명" [ngClass]="{ 'is-invalid' : submitted && f.name.errors }">  
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">성명을 입력하세요.</div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">비밀번호</label>
+      <input formControlName="password" type="password" class="form-control" placeholder="비밀번호" [ngClass]="{ 'is-invalid' : submitted && f.password.errors }">
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">비밀번호를 입력하세요.</div>
+        <div *ngIf="f.password.errors.minlength">비밀번호는 최소 8자 이상이어야합니다.</div>
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">비밀번호확인</label>
+      <input formControlName="confirmPassword" type="password" class="form-control" placeholder="비밀번호 확인" [ngClass]="{ 'is-invalid' : submitted && f.confirmPassword.errors }">
+      <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+        <div *ngIf="f.confirmPassword.errors.required">비밀번호를 입력하세요.</div>
+        <div *ngIf="f.confirmPassword.errors.matching">비밀번호가 일치하지 않습니다.</div>
+      </div>
+    </div>
+    
+    
+  
+    <button class="w-100 btn btn-lg btn-primary" type="submit">회원가입</button>
+    
+  </form>
