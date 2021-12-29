@@ -3,13 +3,28 @@
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     
-      <input formControlName="email" type="email" class="form-control" placeholder="name@example.com">
+    <div class="mb-3">
+      <label class="form-label">이메일</label>
+      <input formControlName="email" type="email" class="form-control" placeholder="name@example.com" [ngClass]="{ 'is-invalid' : submitted && f.email.errors }">
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">이메일을 입력하세요.</div>
+      </div>
+    </div>
+     
     
     
-      <input formControlName="password" type="password" class="form-control" placeholder="Password">
+    <div class="mb-3">
+      <label class="form-label">비밀번호</label>
+      <input formControlName="password" type="password" class="form-control" placeholder="Password"  [ngClass]="{ 'is-invalid' : submitted && f.password.errors }">
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">이메일을 입력하세요.</div>
+        <div *ngIf="f.password.errors.minlength">비밀번호는 최소 8자리 이상이어야합니다</div>
+      </div>
+    </div>
+      
     
 
     
-    <button class="w-100 btn btn-lg btn-primary"(click)="submit()">Sign in</button>
+    <button class="w-100 btn btn-lg btn-primary"(click)="submit()">로그인</button>
     
   </form>

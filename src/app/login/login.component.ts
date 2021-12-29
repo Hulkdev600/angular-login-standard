@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form!: FormGroup
+  submitted = false;
   constructor(
     private formBuilder : FormBuilder,
     private http : HttpClient,
@@ -19,13 +21,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email:'',
-      password:''
+      email:['', Validators.required],
+      password:['', [Validators.required, Validators.minLength(8)]]
     })
   }
-
+  get f():{[key:string]: AbstractControl} {
+    return this.form.controls;  
+  }
   submit() : void{
-    
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
     // console.log(this.form.getRawValue())
      this.http.post('http://localhost:5000/auth/login', this.form.getRawValue()).subscribe(
     result => {
